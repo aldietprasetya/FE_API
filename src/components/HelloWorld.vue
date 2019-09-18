@@ -27,20 +27,21 @@
                 <div class="modal-body">
                     <div class="viewer">
                         <div class="head clearfix">
-                            <p class="date">The last 30 days:</p>
-                            <p class="pair"><span>BTC</span>/USD</p>
-                            <p class="pair"><span>ETH</span>/USD</p>
+                            <a v-on:click="doSort('newDate')" href="javascript:" class="date">The last 30 days:<span v-if="sort.field=='newDate'">{{sort.desc?'▼':'▲'}}</span></a>
+                            <a v-on:click="doSort('btcPrice')" href="javascript:" class="pair">BTC/USD<span v-if="sort.field=='btcPrice'">{{sort.desc?'▼':'▲'}}</span></a>
+                            <a v-on:click="doSort('ethPrice')" href="javascript:" class="pair">ETH/USD<span v-if="sort.field=='ethPrice'">{{sort.desc?'▼':'▲'}}</span></a>
                         </div>
                         <div class="body" id="body">
-                          <div v-for="item in newSettlement" :key="item.newDate" class="settlement-wrap">
+                          <!-- sortedSettlement dari computed karena kita ingin mencari sorting data -->
+                          <div v-for="item in sortedSettlement" :key="item.newDate" class="settlement-wrap"> 
                             <div class="settlement-row clearfix">
                               <div class="date">{{item.newDate | formatDate}}</div>
                               <div class="price">
-                                {{item.btcPrice}}.<span>{{item.btcPriceCommas}}</span>
+                                {{item.btcPriceBcommas}}.<span>{{item.btcPriceCommas}}</span>
                                 <img :src="item.arrowBTCs">
                               </div>
                               <div class="price">
-                                {{item.ethPrice}}.<span>{{item.ethPriceCommas}}</span>
+                                {{item.ethPriceBcommas}}.<span>{{item.ethPriceCommas}}</span>
                                 <img :src="item.arrowETHs">
                               </div>
                             </div>
@@ -56,13 +57,25 @@
 </template>
 
 <style lang="scss">
-.settlement-wrap:last-child {
-  .price {
-    img {
-      display: none;
+#settlementModal {
+  a {
+    text-decoration: none;
+    span {
+      vertical-align: text-bottom;
+      font-size: xx-small;
+      padding-left: 4px;
+      color: white;
+    }
+  }
+  .settlement-wrap:last-child {
+    .price {
+      img {
+        display: none;
+      }
     }
   }
 }
+
 </style>
 
 <script>
@@ -71,13 +84,15 @@ export default {
     return{
       Settlement: [],
       newSettlement: [],
-      BSD: [],
-      ETH: [],
       CurrentDate: "",
       CurrentBTC: "",
       CurrentBTCcommas: "",
       CurrentETH: "",
-      CurrentETHcommas: ""
+      CurrentETHcommas: "",
+      sort: {
+        field: '',
+        desc: true
+      }
     }
   },
   mounted: function() {
@@ -102,7 +117,7 @@ export default {
           // ngelakuin Reset dulu saat perulangan
           newData = {} // supaya refresh datanya ke object kosong saat perulangan
 
-          if(element.price["BTC-USD"]>10300 && element.price["ETH-USD"]>177) {
+          if(element.price["BTC-USD"]>1000 && element.price["ETH-USD"]>50) {
 
             currentPriceBTC = element.price["BTC-USD"];
             currentPriceETH = element.price["ETH-USD"];
@@ -125,9 +140,11 @@ export default {
             }
             newData.arrowBTCs = arrowBTC
             newData.arrowETHs = arrowETH
-            newData.btcPrice = currentPriceBTC.toString().split('.')[0]
+            newData.btcPrice = currentPriceBTC
+            newData.btcPriceBcommas = currentPriceBTC.toString().split('.')[0]
             newData.btcPriceCommas = currentPriceBTC.toString().split('.')[1]
-            newData.ethPrice = currentPriceETH.toString().split('.')[0]
+            newData.ethPrice = currentPriceETH
+            newData.ethPriceBcommas = currentPriceETH.toString().split('.')[0]
             newData.ethPriceCommas = currentPriceETH.toString().split('.')[1]
             newData.newDate = element.settlement_time
 
@@ -135,11 +152,37 @@ export default {
           }
         })
         // Check data array newSettlement
-        console.log(this.newSettlement) 
+        // console.log(this.newSettlement) 
 			}, err => {
 				alert(err)
       });
+    },
+    doSort (field) {
+      if(field === this.sort.field) { //parameter field(any) === return propery field di data
+        this.sort.desc = !this.sort.desc 
+      }else{
+        this.sort.field = field //buat parameter field(any) = return propery field di data
+        this.sort.desc = false 
+      }
     }
+  },
+  computed: {
+    sortedSettlement() {
+      if(!this.sort.field) {
+        return this.newSettlement //panggil newSettlement[]
+      }
+      return this.newSettlement.concat().sort((a,b)=>{
+        if(this.sort.desc){ 
+          console.log(this.sort.desc)
+          return a[this.sort.field] > b[this.sort.field] ? -1:1        
+        }else{
+          console.log(this.sort.desc)
+          return a[this.sort.field] > b[this.sort.field] ? 1:-1                  
+        }
+      })
+    }
+
+    
   }
 }
 </script>
