@@ -2,7 +2,7 @@ import VueResource from 'vue-resource'
 import vSelect from "./components/vSelect"
 
 Vue.use(VueResource)
-Vue.component('vSelect',vSelect)
+Vue.component('vSelect', vSelect)
 
 import moment from 'moment'
 Vue.filter('formatDate', function (value) {
