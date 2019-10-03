@@ -1,7 +1,13 @@
 <template>
   <div>
     <h1>welcome from home !</h1>
-    <vSelect v-bind:propsList="homeList"/>
+    <div class="login">
+      <label for="title">Username</label>
+      <input type="text" placeholder="Username">
+      <label for="title">Password</label>
+      <input type="password" placeholder="Password">
+      <button type="submit" @click="signin">Sign in</button>
+    </div>
   </div>
 </template>
 
@@ -17,6 +23,11 @@ export default {
           ]
         }
     },
+    methods: {
+      signin: function() {
+        this.$router.push("profile")
+      }
+    }
 }
 </script>
 

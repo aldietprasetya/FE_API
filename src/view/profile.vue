@@ -1,7 +1,11 @@
 <template>
   <div>
     hello from profile !
-    <vSelect v-bind:propsList="profileList" />
+    <div>
+      <p>{{profileList.username}}</p>
+      <p>birth date</p>
+      <p>address</p>
+    </div>
   </div>
 </template>
 
@@ -10,11 +14,11 @@ export default {
     name: "profile",
     data() {
         return {
-          profileList: [
-            "profile item 1",
-            "profile item 2",
-            "profile item 3"
-          ]
+          profileList: {
+            "username": "username",
+            "birthdate": "23/11/19",
+            "address": "address"
+          }
         }
     }
 }
