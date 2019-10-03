@@ -1,8 +1,7 @@
 <template>
   <div>
-      <h1>welcome from home !</h1>
-
-      <vSelect v-bind:propsList="homeList"/>
+    <h1>welcome from home !</h1>
+    <vSelect v-bind:propsList="homeList"/>
   </div>
 </template>
 

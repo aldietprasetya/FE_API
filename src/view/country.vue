@@ -1,30 +1,29 @@
 <template>
   <div>
-    Welcome to our Country!
-    <!-- <vSelect v-bind:propsList="countryName">Select below</vSelect> -->
-    <p>{{name}}</p>
+    <h1>Welcome to our Country!</h1>
+    <vSelect v-bind:propsList="countryList"/>
   </div>
 </template>
 
 <script>
 export default {
-    name: "cancel",
+    name: "country",
     data() {
         return {
-            countryName:[],
-            name:[]
+            countryList:[]
         }
     },
     mounted: function() {
         this.getDataCountry();
-        console.log(this.countryList);
     },
     methods: {
         getDataCountry: function() {
             this.$http.get('https://restcountries.eu/rest/v2/all')
 			.then(response => {
-                const test = response
-                console.log(test)
+                var rest = response.data
+                rest.forEach(element => {
+                    this.countryList.push(element.name)
+                });
 			}, err => {
 				this.showMessageError(err)
 			});
