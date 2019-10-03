@@ -1,0 +1,19 @@
+.component {
+    &__child-element {
+        border: 1px solid;
+        padding: 12px 10px;
+        cursor: pointer;
+    }
+    &__options-container {
+        box-shadow: 2px 2px 9px grey;
+        p {
+            margin: 0;
+            padding: 8px 10px;
+            cursor: pointer;
+            &:hover {
+                background: black;
+                color: #fff;
+            }
+        }
+    }
+}

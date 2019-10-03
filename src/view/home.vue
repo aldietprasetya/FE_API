@@ -1,24 +1,21 @@
 <template>
   <div>
-      welcome from home !
+      <h1>welcome from home !</h1>
+
       <vSelect v-bind:propsList="homeList"/>
   </div>
 </template>
 
 <script>
-import vSelect from "../components/vSelect";
 export default {
     name: "home",
-    components: {
-        vSelect
-    },
     data() {
         return {
-            homeList: [
-                "home item 1",
-                "home item 2",
-                "home item 3"
-            ]
+          homeList: [
+            "home item 1",
+            "home item 2",
+            "home item 3"
+          ]
         }
     },
 }

@@ -11,6 +11,9 @@
       <li>
         <router-link to="/profile">Go to profile</router-link>
       </li>
+      <li>
+        <router-link to="/country">Go to Country</router-link>
+      </li>
     </ul>
     <router-view />
   </div>
@@ -25,7 +28,8 @@ export default {
 </script>
 
 <style lang="scss">
-  @import url("./assets/scss/style.scss");
+  @import './assets/scss/style';
+
   * {
     font-family: 'Nunito Sans',sans-serif;
     -moz-box-sizing: border-box;

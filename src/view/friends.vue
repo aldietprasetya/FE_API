@@ -6,12 +6,8 @@
 </template>
 
 <script>
-import vSelect from "../components/vSelect";
 export default {
     name: "cancel",
-    components: {
-      vSelect
-    },
     data() {
         return {
           friendList: [
