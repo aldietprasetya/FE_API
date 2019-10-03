@@ -4,18 +4,21 @@
         padding: 12px 10px;
         cursor: pointer;
     }
+
     &__options-container {
         box-shadow: 2px 2px 9px grey;
         overflow: auto;
         max-height: 250px;
-        p {
-            margin: 0;
-            padding: 8px 10px;
-            cursor: pointer;
-            &:hover {
-                background: black;
-                color: #fff;
-            }
+    }
+
+    &__option {
+        margin: 0;
+        padding: 8px 10px;
+        cursor: pointer;
+
+        &:hover {
+            background: black;
+            color: #fff;
         }
     }
 }

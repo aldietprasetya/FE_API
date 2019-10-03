@@ -4,7 +4,7 @@
             <slot>{{selected}}</slot>
         </div>
         <div class="component__options-container" v-if="showState">
-            <p class="component__option--hover" v-for="(option, index) in list" :key="index" v-on:click="selectedItem(option)">
+            <p class="component__option" v-for="(option, index) in list" :key="index" v-on:click="selectedItem(option)">
                 {{option}}
             </p>
         </div>
