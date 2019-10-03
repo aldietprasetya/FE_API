@@ -24,9 +24,8 @@ export default {
 }
 </script>
 
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900');
-  @import url("./assets/css/style.css");
+<style lang="scss">
+  @import url("./assets/scss/style.scss");
   * {
     font-family: 'Nunito Sans',sans-serif;
     -moz-box-sizing: border-box;

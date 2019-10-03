@@ -1,14 +1,30 @@
 <template>
-    <div>
-        {{list}}
+    <div class="component">
+        <div class="component__child-element" @click="showOptions">
+            <slot>Select</slot>
+        </div>
+        <div class="select__options-container" v-if="showState">
+            <p class="select__option" v-for="(option, index) in list" :key="index">
+                {{option}}
+            </p>
+        </div>
     </div>
 </template>
 <script>
 export default {
-    name: "select",
+    name: "vSelect",
+    props: {
+        propsList: Array
+    },
     data() {
         return {
-            list: ["option 1", "option 2", "option 3"]
+            list: this.propsList,
+            showState: false
+        }
+    },
+    methods: {
+        showOptions: function() {
+            this.showState = !this.showState
         }
     }
 }
