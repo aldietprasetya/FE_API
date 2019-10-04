@@ -1,13 +1,20 @@
 <template>
-  <div>hello from friends !</div>
+  <div class="friends-page">
+    <div class="friends-page__block" v-for="index in friendList" :key="index">
+      <img :src=index.picture width="200">
+      <p>{{index.name}}</p>
+      <p>{{index.age}}</p>
+    </div>
+  </div>
 </template>
 
 <script>
+import { log } from 'util';
 export default {
-  name: "cancel",
+  name: "friends",
   data() {
     return {
-      friendList: ["friend item 1", "friend item 2", "friend item 3"]
+      friendList: []
     };
   },
   mounted() {
@@ -20,7 +27,10 @@ export default {
         .get("http://www.json-generator.com/api/json/get/cdXzYYQMOa?indent=2")
         .then(
           response => {
-            console.log(response.body);
+            var rest = response.data;
+            rest.forEach(element => {
+              this.friendList.push(element);
+            });
           },
           err => {
             alert("error found, check console");

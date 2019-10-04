@@ -1,20 +1,5 @@
 <template>
   <div id="app">
-    Hello from App
-    <ul>
-      <li>
-        <router-link to="/">Go to Home</router-link>
-      </li>
-      <li>
-        <router-link to="/friends">Go to friends</router-link>
-      </li>
-      <li>
-        <router-link to="/profile">Go to profile</router-link>
-      </li>
-      <li>
-        <router-link to="/country">Go to Country</router-link>
-      </li>
-    </ul>
     <router-view />
   </div>
 </template>
