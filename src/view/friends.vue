@@ -24,7 +24,6 @@ export default {
   },
   methods: {
     getFriends: function() {
-      var path = "file/friends.txt";
       this.$http
         .get("http://www.json-generator.com/api/json/get/cdXzYYQMOa?indent=2")
         .then(
