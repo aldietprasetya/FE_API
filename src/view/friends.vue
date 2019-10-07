@@ -1,9 +1,11 @@
 <template>
   <div class="friends-page">
     <div class="friends-page__block" v-for="index in friendList" :key="index">
-      <img :src=index.picture width="200">
-      <p>{{index.name}}</p>
-      <p>{{index.age}}</p>
+      <img :src=index.picture>
+      <h3>{{index.name}}</h3>
+      <p>{{index.email}}</p>
+      <hr/>
+      <p>{{index.address}}</p>
     </div>
   </div>
 </template>

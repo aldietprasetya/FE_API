@@ -1,6 +1,27 @@
 .friends-page {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 960px;
+    margin: auto;
+    text-align: center;
     &__block {
-        display: inline-grid;
-        margin: 1em 2em;
+        flex: 1 33%;
+        padding: 5% 2% 0%;
+        img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        hr {
+            border: 1px solid blue;
+        }
+        h3 {
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+        p {
+            margin: 0;
+        }
     }
 }
