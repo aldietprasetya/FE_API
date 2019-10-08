@@ -1,11 +1,12 @@
 <template>
   <div class="friends-page">
-    <div class="friends-page__block" v-for="index in friendList" :key="index">
-      <img :src=index.picture>
-      <h3>{{index.name}}</h3>
-      <p>{{index.email}}</p>
+    <div class="friends-page__block" v-for="(item, index) in friendList" :key="index">
+      <p>{{index}}</p>
+      <img :src=item.picture>
+      <h3>{{item.name}}</h3>
+      <p>{{item.email}}</p>
       <hr/>
-      <p>{{index.address}}</p>
+      <p class="friends-page__block__address-info">{{item.address}}</p>
     </div>
   </div>
 </template>
@@ -31,6 +32,7 @@ export default {
             var rest = response.data;
             rest.forEach(element => {
               this.friendList.push(element);
+              console.log(element.index);
             });
           },
           err => {
