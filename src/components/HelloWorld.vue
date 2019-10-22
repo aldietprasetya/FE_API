@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+
     <div id="settlementModal" class="modal" style="display: block !important;">
         <div class="modal-window">
             <div class="modal-content">
@@ -53,6 +54,7 @@
             </div>
         </div>
     </div>
+
   </div>
 </template>
 
